@@ -1,5 +1,9 @@
 # Luau for .NET
- High-level Luau bindings for .NET and Unity
+
+hard fork derived from nusky8's repo
+
+High-level Luau bindings for .NET and Unity
+
 
 ![header](./docs/images/img-header.png)
 

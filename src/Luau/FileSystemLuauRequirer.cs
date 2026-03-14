@@ -2,7 +2,8 @@ using System.Buffers;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Text;
-using System.Text.Json;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Luau;
 
@@ -81,12 +82,12 @@ public sealed class FileSystemLuauRequirer : LuauRequirer
     {
         if (aliases == null)
         {
-            var stream = File.Open(GetConfigFilePathOrDefault(), FileMode.Open, FileAccess.Read, FileShare.Read);
-            var json = JsonDocument.Parse(stream).RootElement;
+            using var stream = File.Open(GetConfigFilePathOrDefault(), FileMode.Open, FileAccess.Read, FileShare.Read);
+            var json = JObject.Load(new JsonTextReader(new StreamReader(stream)));
 
-            if (json.TryGetProperty("aliases", out var aliasesElement))
+            if (json.TryGetValue("aliases", out var aliasesToken))
             {
-                aliases = aliasesElement.Deserialize(DictionaryJsonSerializeContext.Default.DictionaryStringString)!;
+                aliases = aliasesToken.ToObject<Dictionary<string, string>>()!;
             }
             else
             {

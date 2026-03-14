@@ -1,4 +1,10 @@
 <Solution>
+  <Folder Name="/miscellanous/">
+    <File Path=".gitignore" />
+    <File Path=".gitmodules" />
+    <File Path="Directory.Build.props" />
+    <File Path="LICENSE" />
+  </Folder>
   <Folder Name="/sandbox/">
     <Project Path="sandbox/ConsoleApp1/ConsoleApp1.csproj" />
   </Folder>
