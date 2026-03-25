@@ -10,10 +10,22 @@ namespace Luau.Native
 
     unsafe partial class NativeMethods
     {
-        [DllImport(__DllName, EntryPoint = "malloc", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern void* malloc(nuint size);
+        public static void* malloc(nuint size)
+        {
+            if (IntPtr.Size == 8)
+            {
+                return (void*)Marshal.AllocHGlobal(new IntPtr(unchecked((long)size)));
+            }
 
-        [DllImport(__DllName, EntryPoint = "free", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern void free(void* free);
+            return (void*)Marshal.AllocHGlobal(new IntPtr(unchecked((int)size)));
+        }
+
+        public static void free(void* ptr)
+        {
+            if (ptr != null)
+            {
+                Marshal.FreeHGlobal((IntPtr)ptr);
+            }
+        }
     }
 }

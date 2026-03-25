@@ -1,4 +1,13 @@
 <Solution>
+  <Folder Name="/misc/" />
+  <Folder Name="/misc/Workflows/">
+    <File Path=".github/workflows/build-luau.android.yml" />
+    <File Path=".github/workflows/build-luau.ios.yml" />
+    <File Path=".github/workflows/build-luau.linux.yml" />
+    <File Path=".github/workflows/build-luau.macos.yml" />
+    <File Path=".github/workflows/build-luau.windows.yml" />
+    <File Path=".github/workflows/build-luau.yml" />
+  </Folder>
   <Folder Name="/sandbox/">
     <Project Path="sandbox/ConsoleApp1/ConsoleApp1.csproj" />
   </Folder>

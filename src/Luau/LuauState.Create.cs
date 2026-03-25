@@ -60,6 +60,8 @@ unsafe partial class LuauState
         return function;
     }
 
+
+
     public LuauFunction CreateFunction(Func<LuauState, CancellationToken, ValueTask<int>> func)
     {
         ThrowIfDisposed();
